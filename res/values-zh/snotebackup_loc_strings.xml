@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="i18n_version">20121009232436</string>
+
+    <string name="app_name">S Note 备份</string>
+    <string name="description">S Note 备份</string>
+    <string name="menu_restore">还原</string>
+    <string name="menu_sdcard">SD 卡</string>
+    <string name="preference_info_about_appname_title">应用程序名称</string>
+    <string name="preference_info_about_appname_url">market://details?id=com.luzi82.simplewallpaper</string>
+    <string name="preference_info_about_appwebpage_title">访问应用程序的网页</string>
+    <string name="preference_info_about_appwebpage_url">http://luzi82-swp.blogspot.com/</string>
+    <string name="preference_info_about_developer_name">栗子捌贰</string>
+    <string name="preference_info_about_developer_title">开发人员</string>
+    <string name="preference_info_about_developer_url">http://touch.facebook.com/luzi82</string>
+    <string name="preference_info_about_email_address">luzi82@gmail.com</string>
+    <string name="preference_info_about_email_subtitle">luzi82@gmail.com</string>
+    <string name="preference_info_about_email_title">给开发人员发送电子邮件</string>
+    <string name="preference_info_about_i18n_version_title">本地化版本</string>
+    <string name="preference_info_about_moreapp_title">查看更多应用程序</string>
+    <string name="preference_info_about_moreapp_url">market://search?q=pub:luzi82</string>
+    <string name="preference_info_about_share_title">分享此应用程序</string>
+    <string name="preference_info_about_title">关於应用程序</string>
+    <string name="preference_info_about_version_title">应用程序版本</string>
+    <string name="preference_info_app_title">应用程序</string>
+    <string name="preference_info_other_title">其他</string>
+    <string name="preference_info_title">资讯</string>
+    <string name="preference_info_version_title">版本</string>
+    <string name="preference_setting_title">设定</string>
+    <string name="qrcode_title">分享S Note 备份</string>
+    <string name="wallpaper_name">S Note 备份</string>
+</resources>

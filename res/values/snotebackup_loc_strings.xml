@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="i18n_version">20121009232436</string>
+
+    <string name="app_name">S Note Backup</string>
+    <string name="description">S Note Backup</string>
+    <string name="menu_restore">Restore</string>
+    <string name="menu_sdcard">SD Card</string>
+    <string name="preference_info_about_appname_title">Application name</string>
+    <string name="preference_info_about_appname_url">market://details?id=com.luzi82.simplewallpaper</string>
+    <string name="preference_info_about_appwebpage_title">Visit the application\'s web page</string>
+    <string name="preference_info_about_appwebpage_url">http://luzi82-swp.blogspot.com/</string>
+    <string name="preference_info_about_developer_name">Luzi82</string>
+    <string name="preference_info_about_developer_title">Developer</string>
+    <string name="preference_info_about_developer_url">http://touch.facebook.com/luzi82</string>
+    <string name="preference_info_about_email_address">luzi82@gmail.com</string>
+    <string name="preference_info_about_email_subtitle">luzi82@gmail.com</string>
+    <string name="preference_info_about_email_title">Send email to developer</string>
+    <string name="preference_info_about_i18n_version_title">Localization version</string>
+    <string name="preference_info_about_moreapp_title">View more applications</string>
+    <string name="preference_info_about_moreapp_url">market://search?q=pub:luzi82</string>
+    <string name="preference_info_about_share_title">Share this application</string>
+    <string name="preference_info_about_title">About application</string>
+    <string name="preference_info_about_version_title">Application version</string>
+    <string name="preference_info_app_title">Application</string>
+    <string name="preference_info_other_title">Miscellaneous</string>
+    <string name="preference_info_title">Informations</string>
+    <string name="preference_info_version_title">Version</string>
+    <string name="preference_setting_title">Settings</string>
+    <string name="qrcode_title">Share S Note Backup</string>
+    <string name="wallpaper_name">S Note Backup</string>
+</resources>

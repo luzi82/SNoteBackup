@@ -1,11 +1,9 @@
 package com.luzi82.snotebackup;
 
-import com.luzi82.snotebackup.dummy.DummyContent;
-
-import android.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,12 +17,12 @@ public class ItemListFragment extends ListFragment {
 
     public interface Callbacks {
 
-        public void onItemSelected(String id);
+        public void onItemSelected(int id);
     }
 
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(String id) {
+        public void onItemSelected(int id) {
         }
     };
 
@@ -34,10 +32,14 @@ public class ItemListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                R.layout.simple_list_item_activated_1,
-                R.id.text1,
-                DummyContent.ITEMS));
+        String [] item=getResources().getStringArray(R.array.menu_textarray);
+//        for(String i:item){
+//        	Log.v("asdf", i);
+//        }
+        setListAdapter(new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_activated_1,
+                android.R.id.text1,
+                item));
     }
 
     @Override
@@ -68,7 +70,7 @@ public class ItemListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         super.onListItemClick(listView, view, position, id);
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(position);
     }
 
     @Override
