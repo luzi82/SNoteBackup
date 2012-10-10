@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="i18n_version">20121010122111</string>
+    <string name="i18n_version">20121010223959</string>
 
     <string name="app_name">S Note 備份</string>
     <string name="description">S Note 備份</string>
+    <string name="menu_home">主頁</string>
     <string name="menu_restore">還原</string>
     <string name="menu_sdcard">SD 卡</string>
     <string name="preference_info_about_appname_title">應用程式名稱</string>

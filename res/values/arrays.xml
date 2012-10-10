@@ -3,6 +3,7 @@
 <resources>
 
     <string-array name="menu_textarray">
+        <item>@string/menu_home</item>
         <item>@string/menu_sdcard</item>
         <item>@string/menu_restore</item>
         <item>@string/preference_info_about_title</item>
