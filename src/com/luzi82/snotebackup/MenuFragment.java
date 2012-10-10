@@ -45,6 +45,7 @@ public class MenuFragment extends ListFragment {
                 .containsKey(STATE_ACTIVATED_POSITION)) {
             setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
         }
+        setActivateOnItemClick(true);
     }
 
     @Override
