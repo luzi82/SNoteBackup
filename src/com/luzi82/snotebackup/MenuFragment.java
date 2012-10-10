@@ -43,7 +43,7 @@ public class MenuFragment extends ListFragment {
 			setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
 		}
 		if ((mActivatedPosition < 0) || (mActivatedPosition >= SNoteBackup.MenuItem.values().length)) {
-			mActivatedPosition = 0;
+			setActivatedPosition(0);
 		}
 		mCallbacks.onItemSelected(mActivatedPosition);
 	}
