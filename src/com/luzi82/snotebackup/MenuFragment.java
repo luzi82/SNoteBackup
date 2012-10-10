@@ -42,9 +42,10 @@ public class MenuFragment extends ListFragment {
 		if (savedInstanceState != null && savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
 			setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
 		}
-		if ((mActivatedPosition >= 0) && (mActivatedPosition < SNoteBackup.MenuItem.values().length)) {
-			mCallbacks.onItemSelected(mActivatedPosition);
+		if ((mActivatedPosition < 0) || (mActivatedPosition >= SNoteBackup.MenuItem.values().length)) {
+			mActivatedPosition = 0;
 		}
+		mCallbacks.onItemSelected(mActivatedPosition);
 	}
 
 	@Override
