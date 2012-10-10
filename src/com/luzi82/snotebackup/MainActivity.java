@@ -34,6 +34,9 @@ public class MainActivity extends Activity implements MenuFragment.Callbacks {
 		case SDCARD:
 			fragment = new SdcardSetttingFragment();
 			break;
+		case ABOUT:
+			fragment = new AboutFragment();
+			break;
 		default:
 			fragment = null;
 			break;
