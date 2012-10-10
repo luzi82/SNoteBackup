@@ -14,7 +14,8 @@ public class MainActivity extends Activity implements MenuFragment.Callbacks {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-//		MenuFragment menu_fragment = (MenuFragment) getFragmentManager().findFragmentById(R.id.menu_fragment);
+		// MenuFragment menu_fragment = (MenuFragment)
+		// getFragmentManager().findFragmentById(R.id.menu_fragment);
 
 		// if (findViewById(R.id.item_detail_container) != null) {
 		// mTwoPane = true;
@@ -26,11 +27,14 @@ public class MainActivity extends Activity implements MenuFragment.Callbacks {
 
 	@Override
 	public void onItemSelected(int id) {
-		T_T.v("id "+id);
+		T_T.v("id " + id);
 		// if (mTwoPane) {
 		Fragment fragment = null;
 		SNoteBackup.MenuItem item = SNoteBackup.MenuItem.values()[id];
 		switch (item) {
+		case HOME:
+			fragment = new HomeFragment();
+			break;
 		case SDCARD:
 			fragment = new SdcardSetttingFragment();
 			break;
