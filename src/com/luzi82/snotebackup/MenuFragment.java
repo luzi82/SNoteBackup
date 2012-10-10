@@ -1,14 +1,13 @@
 package com.luzi82.snotebackup;
 
 import android.app.Activity;
+import android.app.ListFragment;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class ItemListFragment extends ListFragment {
+public class MenuFragment extends ListFragment {
 
     private static final String STATE_ACTIVATED_POSITION = "activated_position";
 
@@ -26,16 +25,13 @@ public class ItemListFragment extends ListFragment {
         }
     };
 
-    public ItemListFragment() {
+    public MenuFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String [] item=getResources().getStringArray(R.array.menu_textarray);
-//        for(String i:item){
-//        	Log.v("asdf", i);
-//        }
         setListAdapter(new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
@@ -95,5 +91,9 @@ public class ItemListFragment extends ListFragment {
         }
 
         mActivatedPosition = position;
+    }
+    
+    public int getActivatedPosition(){
+    	return mActivatedPosition;
     }
 }

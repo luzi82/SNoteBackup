@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="i18n_version">20121009232436</string>
+    <string name="i18n_version">20121010122111</string>
 
     <string name="app_name">S Note 備份</string>
     <string name="description">S Note 備份</string>
@@ -27,6 +27,7 @@
     <string name="preference_info_other_title">其他</string>
     <string name="preference_info_title">資訊</string>
     <string name="preference_info_version_title">版本</string>
+    <string name="preference_setting_sdcard_enable_title">SD 卡備份</string>
     <string name="preference_setting_title">設定</string>
     <string name="qrcode_title">分享S Note 備份</string>
     <string name="wallpaper_name">S Note 備份</string>

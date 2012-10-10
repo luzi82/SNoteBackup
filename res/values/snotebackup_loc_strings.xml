@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="i18n_version">20121009232436</string>
+    <string name="i18n_version">20121010122111</string>
 
     <string name="app_name">S Note Backup</string>
     <string name="description">S Note Backup</string>
@@ -27,6 +27,7 @@
     <string name="preference_info_other_title">Miscellaneous</string>
     <string name="preference_info_title">Informations</string>
     <string name="preference_info_version_title">Version</string>
+    <string name="preference_setting_sdcard_enable_title">SD Card backup</string>
     <string name="preference_setting_title">Settings</string>
     <string name="qrcode_title">Share S Note Backup</string>
     <string name="wallpaper_name">S Note Backup</string>
