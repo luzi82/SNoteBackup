@@ -34,7 +34,7 @@ public abstract class AbstractAsyncTask<Result> {
 
 	final private AbstractAsyncCore.Callback mStartTurnCallback = new AbstractAsyncCore.Callback() {
 		@Override
-		public void acFinish() {
+		public void acFire() {
 			turn();
 		}
 	};
@@ -58,7 +58,7 @@ public abstract class AbstractAsyncTask<Result> {
 
 	final private AbstractAsyncCore.Callback mDoneCallback = new AbstractAsyncCore.Callback() {
 		@Override
-		public void acFinish() {
+		public void acFire() {
 			mCallback.atFinish(mResult);
 		}
 	};
