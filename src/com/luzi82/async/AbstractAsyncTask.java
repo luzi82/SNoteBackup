@@ -49,18 +49,13 @@ public abstract class AbstractAsyncTask<Result> {
 
 	// /////////
 
-	Result mResult;
-
-	protected void done(Result aResult) {
-		mResult = aResult;
-		mACore.start(mDoneCallback);
+	protected void done(final Result aResult) {
+		mACore.start(new AbstractAsyncCore.Callback() {
+			@Override
+			public void acFire() {
+				mCallback.atFinish(aResult);
+			}
+		});
 	}
-
-	final private AbstractAsyncCore.Callback mDoneCallback = new AbstractAsyncCore.Callback() {
-		@Override
-		public void acFire() {
-			mCallback.atFinish(mResult);
-		}
-	};
 
 }
