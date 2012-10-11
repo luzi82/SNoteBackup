@@ -1,10 +1,10 @@
 package com.luzi82.async;
 
-public abstract class AbstactAsyncTask<Result> {
+public abstract class AbstractAsyncTask<Result> {
 
 	AbstractAsyncCore mACore;
 
-	protected AbstactAsyncTask(AbstractAsyncCore aACore) {
+	protected AbstractAsyncTask(AbstractAsyncCore aACore) {
 		mACore = aACore;
 	}
 
