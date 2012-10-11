@@ -65,12 +65,14 @@ public class CloneFile extends AbstractAsyncTask<Boolean> {
 				}
 				if (done) {
 					is.close();
+					is = null;
 					++state;
 				}
 				return true;
 			} else if (state == (statev++)) {
 				os.flush();
 				os.close();
+				os = null;
 				done(true);
 				return false;
 			}
