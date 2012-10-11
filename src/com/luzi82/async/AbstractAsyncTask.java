@@ -1,11 +1,13 @@
 package com.luzi82.async;
 
+import java.util.concurrent.Executor;
+
 public abstract class AbstractAsyncTask<Result> {
 
-	AbstractAsyncCore mACore;
+	Executor mExecutor;
 
-	protected AbstractAsyncTask(AbstractAsyncCore aACore) {
-		mACore = aACore;
+	protected AbstractAsyncTask(Executor aACore) {
+		mExecutor = aACore;
 	}
 
 	static abstract public class Callback<Result> {
@@ -29,12 +31,12 @@ public abstract class AbstractAsyncTask<Result> {
 	}
 
 	private void startTurn() {
-		mACore.start(mStartTurnCallback);
+		mExecutor.execute(mStartTurnCallback);
 	}
 
-	final private AbstractAsyncCore.Callback mStartTurnCallback = new AbstractAsyncCore.Callback() {
+	final private Runnable mStartTurnCallback = new Runnable() {
 		@Override
-		public void acFire() {
+		public void run() {
 			turn();
 		}
 	};
@@ -50,9 +52,9 @@ public abstract class AbstractAsyncTask<Result> {
 	// /////////
 
 	protected void done(final Result aResult) {
-		mACore.start(new AbstractAsyncCore.Callback() {
+		mExecutor.execute(new Runnable() {
 			@Override
-			public void acFire() {
+			public void run() {
 				mCallback.atFinish(aResult);
 			}
 		});
