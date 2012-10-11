@@ -8,6 +8,7 @@
     <ListPreference
         android:key="preference_setting_sdcard_period_time"
         android:title="@string/preference_setting_xxx_period_time_title"
+        android:defaultValue="04:30"
     />
     
 </PreferenceScreen>
