@@ -6,8 +6,8 @@ public abstract class AbstractAsyncTask<Result> {
 
 	protected final Executor mExecutor;
 
-	protected AbstractAsyncTask(Executor aACore) {
-		mExecutor = aACore;
+	protected AbstractAsyncTask(Executor aExecutor) {
+		mExecutor = aExecutor;
 	}
 
 	static abstract public class Callback<Result> {
@@ -31,10 +31,10 @@ public abstract class AbstractAsyncTask<Result> {
 	}
 
 	private void startTurn() {
-		mExecutor.execute(mStartTurnCallback);
+		mExecutor.execute(mTurnRunnable);
 	}
 
-	final private Runnable mStartTurnCallback = new Runnable() {
+	final private Runnable mTurnRunnable = new Runnable() {
 		@Override
 		public void run() {
 			turn();
