@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class SdCardBackupManager {
+public class FileUtils {
 
 	private static final int BUFFER_SIZE = 512 * 1024;
 
