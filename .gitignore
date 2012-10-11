@@ -2,8 +2,8 @@
 /gen
 /.i18n_timestamp
 /res/values/snotebackup_loc_strings.xml
-/res/values-zh/
-/res/values-zh-rHK/
-/res/values-zh-rTW/
+/res/values-zh/snotebackup_loc_strings.xml
+/res/values-zh-rHK/snotebackup_loc_strings.xml
+/res/values-zh-rTW/snotebackup_loc_strings.xml
 /src2/i18n/.~lock.i18n.ods#
 /uninstall.sh
