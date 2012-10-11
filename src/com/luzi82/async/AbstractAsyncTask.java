@@ -4,7 +4,7 @@ import java.util.concurrent.Executor;
 
 public abstract class AbstractAsyncTask<Result> {
 
-	Executor mExecutor;
+	protected final Executor mExecutor;
 
 	protected AbstractAsyncTask(Executor aACore) {
 		mExecutor = aACore;
