@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.concurrent.Executor;
 
 import com.luzi82.async.AbstractAsyncTask;
+import com.luzi82.snotebackup.T_T;
 
 public class DeleteDir extends AbstractAsyncTask<Boolean> {
 
@@ -20,6 +21,7 @@ public class DeleteDir extends AbstractAsyncTask<Boolean> {
 
 	@Override
 	protected boolean tick() {
+		T_T.v(mTarget.getAbsolutePath());
 		boolean good = true;
 		good = good && mTarget.exists();
 		good = good && mTarget.isDirectory();

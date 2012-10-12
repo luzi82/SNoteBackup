@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.concurrent.Executor;
 
 import com.luzi82.async.AbstractAsyncTask;
+import com.luzi82.snotebackup.T_T;
 
 public class Delete extends AbstractAsyncTask<Boolean> {
 
@@ -16,6 +17,7 @@ public class Delete extends AbstractAsyncTask<Boolean> {
 
 	@Override
 	protected boolean tick() {
+		T_T.v(mTarget.getAbsolutePath());
 		if (!mTarget.exists()) {
 			done(true);
 			return false;
@@ -30,6 +32,7 @@ public class Delete extends AbstractAsyncTask<Boolean> {
 					done(good && t);
 				}
 			});
+			d.start();
 			return false;
 		} else if (mTarget.isFile()) {
 			boolean good = mTarget.delete();
