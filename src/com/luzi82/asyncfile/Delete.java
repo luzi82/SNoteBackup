@@ -21,7 +21,15 @@ public class Delete extends AbstractAsyncTask<Boolean> {
 			return false;
 		}
 		if (mTarget.isDirectory()) {
-			// TODO
+			DeleteDir d = new DeleteDir(mExecutor, mTarget);
+			d.setCallback(new Callback<Boolean>() {
+				@Override
+				public void atFinish(Boolean aResult) {
+					boolean good = aResult;
+					boolean t = mTarget.delete();
+					done(good && t);
+				}
+			});
 			return false;
 		} else if (mTarget.isFile()) {
 			boolean good = mTarget.delete();
