@@ -14,7 +14,7 @@ public class CloneDir extends AbstractAsyncTask<Boolean> {
 	int mDone = 0;
 	boolean mGood = true;
 
-	protected CloneDir(Executor aExecutor, File aFrom, File aTo) {
+	public CloneDir(Executor aExecutor, File aFrom, File aTo) {
 		super(aExecutor);
 		mFrom = aFrom;
 		mTo = aTo;

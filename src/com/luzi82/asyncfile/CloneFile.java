@@ -25,7 +25,7 @@ public class CloneFile extends AbstractAsyncTask<Boolean> {
 	private static final int BUF_SIZE = 128 * 1024;
 	private static final int LOOP = 8;
 
-	protected CloneFile(Executor aExecutor, File aFrom, File aTo) {
+	public CloneFile(Executor aExecutor, File aFrom, File aTo) {
 		super(aExecutor);
 		mFrom = aFrom;
 		mTo = aTo;

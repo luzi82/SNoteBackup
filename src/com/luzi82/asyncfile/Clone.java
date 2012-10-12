@@ -10,7 +10,7 @@ public class Clone extends AbstractAsyncTask<Boolean> {
 	final File mFrom;
 	final File mTo;
 
-	protected Clone(Executor aExecutor, File aFrom, File aTo) {
+	public Clone(Executor aExecutor, File aFrom, File aTo) {
 		super(aExecutor);
 		mFrom = aFrom;
 		mTo = aTo;
