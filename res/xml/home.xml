@@ -7,6 +7,11 @@
     />
 
     <Preference
+        android:key="test_service"
+        android:title="Test service"
+    />
+
+    <Preference
         android:key="test_copy"
         android:title="Test copy"
     />

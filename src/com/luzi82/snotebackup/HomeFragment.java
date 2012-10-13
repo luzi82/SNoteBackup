@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -23,8 +24,10 @@ public class HomeFragment extends PreferenceFragment {
 
 		addPreferencesFromResource(R.xml.home);
 
-		Preference c = findPreference("test_copy");
-		c.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+		Preference p;
+
+		p = findPreference("test_copy");
+		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 				copy();
@@ -32,11 +35,21 @@ public class HomeFragment extends PreferenceFragment {
 			}
 		});
 
-		Preference d = findPreference("test_delete");
-		d.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+		p = findPreference("test_delete");
+		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
 				delete();
+				return true;
+			}
+		});
+
+		p = findPreference("test_service");
+		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent i = new Intent(getActivity(), SdcardBackupService.class);
+				getActivity().startService(i);
 				return true;
 			}
 		});
