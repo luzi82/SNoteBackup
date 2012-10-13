@@ -2,9 +2,12 @@ package com.luzi82.snotebackup;
 
 import java.util.LinkedList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.preference.Preference.OnPreferenceClickListener;
 
 public class SdcardSetttingFragment extends PreferenceFragment {
 
@@ -12,6 +15,8 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.setting_sdcard);
+
+		Preference p;
 
 		LinkedList<String> timeList = new LinkedList<String>();
 		for (int i = 0; i < 24; ++i) {
@@ -23,6 +28,16 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		ListPreference time_p = (ListPreference) findPreference("preference_setting_sdcard_period_time");
 		time_p.setEntries(timeAry);
 		time_p.setEntryValues(timeAry);
+
+		p = findPreference("preference_backup_now");
+		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			@Override
+			public boolean onPreferenceClick(Preference preference) {
+				Intent i = new Intent(getActivity(), SdcardBackupService.class);
+				getActivity().startService(i);
+				return true;
+			}
+		});
 	}
 
 }
