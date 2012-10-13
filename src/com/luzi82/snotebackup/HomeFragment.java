@@ -55,30 +55,30 @@ public class HomeFragment extends PreferenceFragment {
 		});
 	}
 
-	void copy() {
-		File from = new File("/mnt/extSdCard/luzi82/tmp");
-		File to = new File("/mnt/extSdCard/luzi82/tmp2");
-		Copy c = new Copy(exe, from, to);
-		c.setCallback(new Callback<Boolean>() {
-			@Override
-			public void atFinish(Boolean aResult) {
-				T_T.v("copy atFinish " + aResult);
-			}
-		});
-		c.start();
-	}
-
-	void delete() {
-		T_T.vf();
-		File tar = new File("/mnt/extSdCard/luzi82/tmp2");
-		Delete d = new Delete(exe, tar);
-		d.setCallback(new Callback<Boolean>() {
-			@Override
-			public void atFinish(Boolean aResult) {
-				T_T.v("delete atFinish " + aResult);
-			}
-		});
-		d.start();
-	}
+//	void copy() {
+//		File from = new File("/mnt/extSdCard/luzi82/tmp");
+//		File to = new File("/mnt/extSdCard/luzi82/tmp2");
+//		Copy c = new Copy(exe, from, to);
+//		c.setCallback(new Callback<Boolean>() {
+//			@Override
+//			public void atFinish(Boolean aResult) {
+//				T_T.v("copy atFinish " + aResult);
+//			}
+//		});
+//		c.start();
+//	}
+//
+//	void delete() {
+//		T_T.vf();
+//		File tar = new File("/mnt/extSdCard/luzi82/tmp2");
+//		Delete d = new Delete(exe, tar);
+//		d.setCallback(new Callback<Boolean>() {
+//			@Override
+//			public void atFinish(Boolean aResult) {
+//				T_T.v("delete atFinish " + aResult);
+//			}
+//		});
+//		d.start();
+//	}
 
 }
