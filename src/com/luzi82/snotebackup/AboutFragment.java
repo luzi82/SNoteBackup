@@ -1,7 +1,5 @@
 package com.luzi82.snotebackup;
 
-import java.net.URI;
-
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
