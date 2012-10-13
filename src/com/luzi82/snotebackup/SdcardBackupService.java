@@ -25,18 +25,27 @@ public class SdcardBackupService extends Service {
 	public synchronized int onStartCommand(Intent intent, int flags, int startId) {
 		if (busy)
 			return START_STICKY;
+
 		busy = true;
 
-		File from = new File("/mnt/extSdCard/luzi82/tmp");
-		File to = new File("/mnt/extSdCard/luzi82/tmp2");
+		if (!SNoteBackup.sdcardExist()) {
+			mExecutor.execute(mDoneRunnable);
+			return START_STICKY;
+		}
+
+		long time = System.currentTimeMillis();
+		File sdcardDir = SNoteBackup.sdcardAppDir(this);
+		sdcardDir.mkdirs();
+
+		File from = new File(SNoteBackup.SNOTE_PATH);
+		File to = new File(sdcardDir, Long.toString(time));
 		Copy copy = new Copy(mExecutor, from, to);
 		copy.setCallback(new Callback<Boolean>() {
 			@Override
 			public void atFinish(Boolean aResult) {
 				synchronized (SdcardBackupService.this) {
 					T_T.v("copy atFinish " + aResult);
-					stopSelf();
-					busy = false;
+					done();
 				}
 			}
 		});
@@ -49,6 +58,18 @@ public class SdcardBackupService extends Service {
 	public void onDestroy() {
 		T_T.vf();
 		super.onDestroy();
+	}
+
+	final private Runnable mDoneRunnable = new Runnable() {
+		@Override
+		public void run() {
+			done();
+		}
+	};
+
+	private synchronized void done() {
+		stopSelf();
+		busy = false;
 	}
 
 }
