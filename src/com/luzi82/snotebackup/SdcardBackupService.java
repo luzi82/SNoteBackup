@@ -35,6 +35,7 @@ public class SdcardBackupService extends Service {
 			public void atFinish(Boolean aResult) {
 				T_T.v("copy atFinish " + aResult);
 				stopSelf();
+				busy = false;
 			}
 		});
 		copy.start();
