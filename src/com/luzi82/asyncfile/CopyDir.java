@@ -5,7 +5,7 @@ import java.util.concurrent.Executor;
 
 import com.luzi82.async.AbstractAsyncTask;
 
-public class CloneDir extends AbstractAsyncTask<Boolean> {
+public class CopyDir extends AbstractAsyncTask<Boolean> {
 
 	final File mFrom;
 	final File mTo;
@@ -14,7 +14,7 @@ public class CloneDir extends AbstractAsyncTask<Boolean> {
 	int mDone = 0;
 	boolean mGood = true;
 
-	public CloneDir(Executor aExecutor, File aFrom, File aTo) {
+	public CopyDir(Executor aExecutor, File aFrom, File aTo) {
 		super(aExecutor);
 		mFrom = aFrom;
 		mTo = aTo;
@@ -41,7 +41,7 @@ public class CloneDir extends AbstractAsyncTask<Boolean> {
 		Callback<Boolean> cb = new Callback<Boolean>() {
 			@Override
 			public void atFinish(Boolean aResult) {
-				synchronized (CloneDir.this) {
+				synchronized (CopyDir.this) {
 					mGood = mGood && aResult;
 					++mDone;
 					if (mDone == mTotal) {
@@ -53,7 +53,7 @@ public class CloneDir extends AbstractAsyncTask<Boolean> {
 
 		for (File file : fileList) {
 			File to = new File(mTo, file.getName());
-			Clone c = new Clone(mExecutor, file, to);
+			Copy c = new Copy(mExecutor, file, to);
 			c.setCallback(cb);
 			c.start();
 		}

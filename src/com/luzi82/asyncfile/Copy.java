@@ -5,12 +5,12 @@ import java.util.concurrent.Executor;
 
 import com.luzi82.async.AbstractAsyncTask;
 
-public class Clone extends AbstractAsyncTask<Boolean> {
+public class Copy extends AbstractAsyncTask<Boolean> {
 
 	final File mFrom;
 	final File mTo;
 
-	public Clone(Executor aExecutor, File aFrom, File aTo) {
+	public Copy(Executor aExecutor, File aFrom, File aTo) {
 		super(aExecutor);
 		mFrom = aFrom;
 		mTo = aTo;
@@ -27,7 +27,7 @@ public class Clone extends AbstractAsyncTask<Boolean> {
 		}
 		if (mFrom.isDirectory()) {
 			mTo.mkdirs();
-			CloneDir c = new CloneDir(mExecutor, mFrom, mTo);
+			CopyDir c = new CopyDir(mExecutor, mFrom, mTo);
 			c.setCallback(new Callback<Boolean>() {
 				@Override
 				public void atFinish(Boolean aResult) {
@@ -37,7 +37,7 @@ public class Clone extends AbstractAsyncTask<Boolean> {
 			c.start();
 			return false;
 		} else if (mFrom.isFile()) {
-			CloneFile c = new CloneFile(mExecutor, mFrom, mTo);
+			CopyFile c = new CopyFile(mExecutor, mFrom, mTo);
 			c.setCallback(new Callback<Boolean>() {
 				@Override
 				public void atFinish(Boolean aResult) {

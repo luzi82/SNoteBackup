@@ -11,7 +11,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceFragment;
 
 import com.luzi82.async.AbstractAsyncTask.Callback;
-import com.luzi82.asyncfile.Clone;
+import com.luzi82.asyncfile.Copy;
 import com.luzi82.asyncfile.Delete;
 
 public class HomeFragment extends PreferenceFragment {
@@ -58,7 +58,7 @@ public class HomeFragment extends PreferenceFragment {
 	void copy() {
 		File from = new File("/mnt/extSdCard/luzi82/tmp");
 		File to = new File("/mnt/extSdCard/luzi82/tmp2");
-		Clone c = new Clone(exe, from, to);
+		Copy c = new Copy(exe, from, to);
 		c.setCallback(new Callback<Boolean>() {
 			@Override
 			public void atFinish(Boolean aResult) {

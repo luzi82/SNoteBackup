@@ -12,7 +12,7 @@ import java.util.concurrent.Executor;
 
 import com.luzi82.async.AbstractAsyncTask;
 
-public class CloneFile extends AbstractAsyncTask<Boolean> {
+public class CopyFile extends AbstractAsyncTask<Boolean> {
 
 	final File mFrom;
 	final File mTo;
@@ -25,7 +25,7 @@ public class CloneFile extends AbstractAsyncTask<Boolean> {
 	private static final int BUF_SIZE = 128 * 1024;
 	private static final int LOOP = 8;
 
-	public CloneFile(Executor aExecutor, File aFrom, File aTo) {
+	public CopyFile(Executor aExecutor, File aFrom, File aTo) {
 		super(aExecutor);
 		mFrom = aFrom;
 		mTo = aTo;
