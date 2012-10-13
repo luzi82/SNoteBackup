@@ -33,9 +33,11 @@ public class SdcardBackupService extends Service {
 		copy.setCallback(new Callback<Boolean>() {
 			@Override
 			public void atFinish(Boolean aResult) {
-				T_T.v("copy atFinish " + aResult);
-				stopSelf();
-				busy = false;
+				synchronized (SdcardBackupService.this) {
+					T_T.v("copy atFinish " + aResult);
+					stopSelf();
+					busy = false;
+				}
 			}
 		});
 		copy.start();
