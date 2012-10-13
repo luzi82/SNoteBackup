@@ -26,25 +26,25 @@ public class HomeFragment extends PreferenceFragment {
 
 		Preference p;
 
-		p = findPreference("test_copy");
-		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				copy();
-				return true;
-			}
-		});
+//		p = findPreference("test_copy");
+//		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+//			@Override
+//			public boolean onPreferenceClick(Preference preference) {
+//				copy();
+//				return true;
+//			}
+//		});
+//
+//		p = findPreference("test_delete");
+//		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+//			@Override
+//			public boolean onPreferenceClick(Preference preference) {
+//				delete();
+//				return true;
+//			}
+//		});
 
-		p = findPreference("test_delete");
-		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				delete();
-				return true;
-			}
-		});
-
-		p = findPreference("test_service");
+		p = findPreference("preference_backup_now");
 		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {

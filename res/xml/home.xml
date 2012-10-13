@@ -6,11 +6,7 @@
         android:title="@string/preference_backup_now_title"
     />
 
-    <Preference
-        android:key="test_service"
-        android:title="Test service"
-    />
-
+    <!-- 
     <Preference
         android:key="test_copy"
         android:title="Test copy"
@@ -20,5 +16,6 @@
         android:key="test_delete"
         android:title="Test delete"
     />
+    -->
     
 </PreferenceScreen>
