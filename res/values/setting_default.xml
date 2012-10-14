@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="preference_setting_sdcard_enable_default">true</string>
+    <string name="preference_setting_sdcard_period_default">DAY</string>
+    <string name="preference_setting_sdcard_period_time_default">04:30</string>
+    <string name="preference_setting_sdcard_range_default">7</string>
+    <string name="preference_setting_sdcard_min_copy_default">3</string>
+</resources>

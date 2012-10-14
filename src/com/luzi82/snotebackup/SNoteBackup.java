@@ -6,7 +6,7 @@ import android.content.Context;
 import android.os.StatFs;
 
 public class SNoteBackup {
-
+	
 	enum MenuItem {
 		HOME, SDCARD, BACKUP, ABOUT,
 	}

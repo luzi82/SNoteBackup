@@ -16,14 +16,15 @@
 
 <resources>
 
+    <!-- 
     <string-array name="preference_setting_xxx_period_entries">
-        <item>@string/preference_setting_xxx_period_hourly_title</item>
-        <item>@string/preference_setting_xxx_period_daily_title</item>
+        <item>@string/preference_setting_xxx_period_hour1_title</item>
+        <item>@string/preference_setting_xxx_period_hour2_title</item>
+        <item>@string/preference_setting_xxx_period_hour3_title</item>
+        <item>@string/preference_setting_xxx_period_hour6_title</item>
+        <item>@string/preference_setting_xxx_period_hour12_title</item>
+        <item>@string/preference_setting_xxx_period_day_title</item>
     </string-array>
+     -->
     
-    <string-array name="preference_setting_xxx_period_entryvalues">
-        <item>hour</item>
-        <item>day</item>
-    </string-array>
-
 </resources>
