@@ -14,12 +14,14 @@
         android:key="preference_setting_sdcard_period_time"
         android:title="@string/preference_setting_xxx_period_time_title"
         android:defaultValue="04:30"
+        android:dependency="preference_setting_sdcard_enable"
     />
     <EditTextPreference
         android:key="preference_setting_sdcard_range"
         android:title="@string/preference_setting_xxx_range_title"
         android:inputType="numberDecimal"
         android:defaultValue="7"
+        android:dependency="preference_setting_sdcard_enable"
     />
     
 </PreferenceScreen>
