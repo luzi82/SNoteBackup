@@ -74,7 +74,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		String preference_setting_sdcard_period_value = sp.getString("preference_setting_sdcard_period", "");
 		boolean preference_setting_sdcard_enable_value = sp.getBoolean("preference_setting_sdcard_enable", false);
 		String preference_setting_sdcard_period_time_value = sp.getString("preference_setting_sdcard_period_time", "");
-		int preference_setting_sdcard_range_value = sp.getInt("preference_setting_sdcard_range_value", 7);
+		String preference_setting_sdcard_range_value = sp.getString("preference_setting_sdcard_range", "");
 
 		Preference p;
 		boolean b;
@@ -96,7 +96,11 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		p.setSummary(preference_setting_sdcard_period_time_value);
 
 		p = findPreference("preference_setting_sdcard_range");
-		p.setSummary(getString(R.string.preference_setting_xxx_range_summary, preference_setting_sdcard_range_value));
+		if (preference_setting_sdcard_range_value.equals("")) {
+			p.setSummary("");
+		} else {
+			p.setSummary(getString(R.string.preference_setting_xxx_range_summary, preference_setting_sdcard_range_value));
+		}
 	}
 
 }
