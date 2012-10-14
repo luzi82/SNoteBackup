@@ -3,11 +3,13 @@ package com.luzi82.snotebackup;
 import java.util.LinkedList;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceFragment;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.preference.PreferenceFragment;
 
 public class SdcardSetttingFragment extends PreferenceFragment {
 
@@ -38,6 +40,49 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 				return true;
 			}
 		});
+
+		SharedPreferences sp = getPreferenceManager().getSharedPreferences();
+		sp.registerOnSharedPreferenceChangeListener(changeListener);
+
+		update();
+	}
+
+	SharedPreferences.OnSharedPreferenceChangeListener changeListener = new OnSharedPreferenceChangeListener() {
+		@Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+			update();
+		}
+	};
+
+	private void update() {
+		SharedPreferences sp = getPreferenceManager().getSharedPreferences();
+
+		String preference_setting_sdcard_period_value = sp.getString("preference_setting_sdcard_period", "");
+		boolean preference_setting_sdcard_enable_value = sp.getBoolean("preference_setting_sdcard_enable", false);
+		String preference_setting_sdcard_period_time_value = sp.getString("preference_setting_sdcard_period_time", "");
+		int preference_setting_sdcard_range_value = sp.getInt("preference_setting_sdcard_range_value", 7);
+
+		Preference p;
+		boolean b;
+
+		p = findPreference("preference_setting_sdcard_period");
+		if (preference_setting_sdcard_period_value.equals("hour")) {
+			p.setSummary(R.string.preference_setting_xxx_period_hourly_title);
+		} else if (preference_setting_sdcard_period_value.equals("day")) {
+			p.setSummary(R.string.preference_setting_xxx_period_daily_title);
+		} else {
+			p.setSummary("");
+		}
+
+		p = findPreference("preference_setting_sdcard_period_time");
+		b = true;
+		b = b && preference_setting_sdcard_enable_value;
+		b = b && preference_setting_sdcard_period_value.equals("day");
+		p.setEnabled(b);
+		p.setSummary(preference_setting_sdcard_period_time_value);
+
+		p = findPreference("preference_setting_sdcard_range");
+		p.setSummary(getString(R.string.preference_setting_xxx_range_summary, preference_setting_sdcard_range_value));
 	}
 
 }

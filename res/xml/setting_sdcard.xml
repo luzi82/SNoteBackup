@@ -11,7 +11,7 @@
         android:title="@string/preference_setting_sdcard_enable_title"
     />
     <ListPreference
-        android:key="preference_setting_xxx_period"
+        android:key="preference_setting_sdcard_period"
         android:title="@string/preference_setting_xxx_period_title"
         android:entries="@array/preference_setting_xxx_period_entries"
         android:entryValues="@array/preference_setting_xxx_period_entryvalues"
@@ -22,7 +22,6 @@
         android:key="preference_setting_sdcard_period_time"
         android:title="@string/preference_setting_xxx_period_time_title"
         android:defaultValue="04:30"
-        android:dependency="preference_setting_sdcard_enable"
     />
     <EditTextPreference
         android:key="preference_setting_sdcard_range"
