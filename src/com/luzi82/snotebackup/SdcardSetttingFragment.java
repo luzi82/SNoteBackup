@@ -41,10 +41,24 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 			}
 		});
 
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
 		SharedPreferences sp = getPreferenceManager().getSharedPreferences();
 		sp.registerOnSharedPreferenceChangeListener(changeListener);
 
 		update();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+
+		SharedPreferences sp = getPreferenceManager().getSharedPreferences();
+		sp.unregisterOnSharedPreferenceChangeListener(changeListener);
 	}
 
 	SharedPreferences.OnSharedPreferenceChangeListener changeListener = new OnSharedPreferenceChangeListener() {
