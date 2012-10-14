@@ -126,7 +126,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		l /= 1000; // sec
 		l /= 60; // min
 		mn = (int) (l % 60);
-		l /= 60;
+		l /= 60; // hour
 		hr = (int) l;
 		p.setSummary(String.format("%02d:%02d", hr, mn));
 
