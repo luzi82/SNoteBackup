@@ -24,14 +24,14 @@
     <EditTextPreference
         android:key="preference_setting_sdcard_range"
         android:title="@string/preference_setting_xxx_range_title"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:defaultValue="@string/preference_setting_sdcard_range_default"
         android:dependency="preference_setting_sdcard_enable"
     />
     <EditTextPreference
         android:key="preference_setting_sdcard_min_copy"
         android:title="@string/preference_setting_sdcard_min_copy_title"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:defaultValue="@string/preference_setting_sdcard_min_copy_default"
         android:dependency="preference_setting_sdcard_enable"
     />
