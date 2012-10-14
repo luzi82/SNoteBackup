@@ -37,19 +37,39 @@ public class Pref {
 		Pref ret = new Pref();
 
 		boolean preference_setting_sdcard_enable_default = Boolean.parseBoolean(aContext.getString(R.string.preference_setting_sdcard_enable_default));
-		ret.preference_setting_sdcard_enable = sp.getBoolean("preference_setting_sdcard_enable", preference_setting_sdcard_enable_default);
+		try {
+			ret.preference_setting_sdcard_enable = sp.getBoolean("preference_setting_sdcard_enable", preference_setting_sdcard_enable_default);
+		} catch (Exception e) {
+			ret.preference_setting_sdcard_enable = preference_setting_sdcard_enable_default;
+		}
 
 		String preference_setting_sdcard_period_default = aContext.getString(R.string.preference_setting_sdcard_period_default);
-		ret.preference_setting_sdcard_period = Enum.valueOf(Period.class, sp.getString("preference_setting_sdcard_period", preference_setting_sdcard_period_default));
+		try {
+			ret.preference_setting_sdcard_period = Enum.valueOf(Period.class, sp.getString("preference_setting_sdcard_period", preference_setting_sdcard_period_default));
+		} catch (Exception e) {
+			ret.preference_setting_sdcard_period = Enum.valueOf(Period.class, preference_setting_sdcard_period_default);
+		}
 
 		String preference_setting_sdcard_period_time_default = Long.toString(preference_setting_sdcard_period_time_default(aContext));
-		ret.preference_setting_sdcard_period_time = Long.parseLong(sp.getString("preference_setting_sdcard_period_time", preference_setting_sdcard_period_time_default));
+		try {
+			ret.preference_setting_sdcard_period_time = Long.parseLong(sp.getString("preference_setting_sdcard_period_time", preference_setting_sdcard_period_time_default));
+		} catch (Exception e) {
+			ret.preference_setting_sdcard_period_time = Long.parseLong(preference_setting_sdcard_period_time_default);
+		}
 
 		String preference_setting_sdcard_range_default = aContext.getString(R.string.preference_setting_sdcard_range_default);
-		ret.preference_setting_sdcard_range = Integer.parseInt(sp.getString("preference_setting_sdcard_range", preference_setting_sdcard_range_default));
+		try {
+			ret.preference_setting_sdcard_range = Integer.parseInt(sp.getString("preference_setting_sdcard_range", preference_setting_sdcard_range_default));
+		} catch (Exception e) {
+			ret.preference_setting_sdcard_range = Integer.parseInt(preference_setting_sdcard_range_default);
+		}
 
 		String preference_setting_sdcard_min_copy_default = aContext.getString(R.string.preference_setting_sdcard_min_copy_default);
-		ret.preference_setting_sdcard_min_copy = Integer.parseInt(sp.getString("preference_setting_sdcard_min_copy", preference_setting_sdcard_min_copy_default));
+		try {
+			ret.preference_setting_sdcard_min_copy = Integer.parseInt(sp.getString("preference_setting_sdcard_min_copy", preference_setting_sdcard_min_copy_default));
+		} catch (Exception e) {
+			ret.preference_setting_sdcard_min_copy = Integer.parseInt(preference_setting_sdcard_min_copy_default);
+		}
 
 		return ret;
 	}
