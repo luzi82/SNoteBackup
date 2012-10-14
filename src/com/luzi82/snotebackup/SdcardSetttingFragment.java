@@ -71,10 +71,11 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 	private void update() {
 		SharedPreferences sp = getPreferenceManager().getSharedPreferences();
 
-		String preference_setting_sdcard_period_value = sp.getString("preference_setting_sdcard_period", "");
+		String preference_setting_sdcard_period_value = sp.getString("preference_setting_sdcard_period", "day");
 		boolean preference_setting_sdcard_enable_value = sp.getBoolean("preference_setting_sdcard_enable", false);
-		String preference_setting_sdcard_period_time_value = sp.getString("preference_setting_sdcard_period_time", "");
-		String preference_setting_sdcard_range_value = sp.getString("preference_setting_sdcard_range", "");
+		String preference_setting_sdcard_period_time_value = sp.getString("preference_setting_sdcard_period_time", "04:30");
+		String preference_setting_sdcard_range_value = sp.getString("preference_setting_sdcard_range", "7");
+		String preference_setting_sdcard_min_copy_value = sp.getString("preference_setting_sdcard_min_copy", "3");
 
 		Preference p;
 		boolean b;
@@ -96,11 +97,10 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		p.setSummary(preference_setting_sdcard_period_time_value);
 
 		p = findPreference("preference_setting_sdcard_range");
-		if (preference_setting_sdcard_range_value.equals("")) {
-			p.setSummary("");
-		} else {
-			p.setSummary(getString(R.string.preference_setting_xxx_range_summary, preference_setting_sdcard_range_value));
-		}
+		p.setSummary(getString(R.string.preference_setting_xxx_range_summary, preference_setting_sdcard_range_value));
+
+		p = findPreference("preference_setting_sdcard_min_copy");
+		p.setSummary(preference_setting_sdcard_min_copy_value);
 	}
 
 }
