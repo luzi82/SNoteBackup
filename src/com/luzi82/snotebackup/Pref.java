@@ -91,7 +91,7 @@ public class Pref {
 		ret += mn;
 		ret *= 60; // sec
 		ret *= 1000; // msec
-		ret = offset(ret);
+		ret = unOffset(ret);
 
 		return ret;
 	}
