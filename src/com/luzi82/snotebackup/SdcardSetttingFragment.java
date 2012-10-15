@@ -8,8 +8,10 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceFragment;
+import android.widget.Toast;
 
 public class SdcardSetttingFragment extends PreferenceFragment {
 
@@ -61,6 +63,36 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 			public boolean onPreferenceClick(Preference preference) {
 				Intent i = new Intent(getActivity(), MainService.class);
 				getActivity().startService(i);
+				return true;
+			}
+		});
+
+		p = findPreference("preference_setting_sdcard_range");
+		p.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				try {
+					String v = (String) newValue;
+					Integer.parseInt(v);
+				} catch (Exception e) {
+					Toast.makeText(getActivity(), R.string.warning_input_number, Toast.LENGTH_SHORT).show();
+					return false;
+				}
+				return true;
+			}
+		});
+
+		p = findPreference("preference_setting_sdcard_min_copy");
+		p.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				try {
+					String v = (String) newValue;
+					Integer.parseInt(v);
+				} catch (Exception e) {
+					Toast.makeText(getActivity(), R.string.warning_input_number, Toast.LENGTH_SHORT).show();
+					return false;
+				}
 				return true;
 			}
 		});
