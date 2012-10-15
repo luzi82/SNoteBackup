@@ -125,20 +125,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 	};
 
 	private void update() {
-		SharedPreferences sp = getPreferenceManager().getSharedPreferences();
-
 		Pref pref = Pref.getPref(getActivity());
-
-		// String preference_setting_sdcard_period_value =
-		// sp.getString("preference_setting_sdcard_period", "day");
-		// boolean preference_setting_sdcard_enable_value =
-		// sp.getBoolean("preference_setting_sdcard_enable", false);
-		// String preference_setting_sdcard_period_time_value =
-		// sp.getString("preference_setting_sdcard_period_time", "04:30");
-		// String preference_setting_sdcard_range_value =
-		// sp.getString("preference_setting_sdcard_range", "7");
-		// String preference_setting_sdcard_min_copy_value =
-		// sp.getString("preference_setting_sdcard_min_copy", "3");
 
 		Preference p;
 		boolean b;
