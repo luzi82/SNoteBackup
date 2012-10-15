@@ -20,9 +20,10 @@
 	        android:dependency="preference_setting_sdcard_enable"
 	        android:defaultValue="@string/preference_setting_sdcard_schedule_backup_period_default"
 	    />
-	    <ListPreference
+	    <Preference
 	        android:key="preference_setting_sdcard_next_backup_time"
 	        android:title="@string/preference_setting_xxx_next_backup_time_title"
+	        android:dependency="preference_setting_sdcard_enable"
 	    />
 	    <EditTextPreference
 	        android:key="preference_setting_sdcard_range"
@@ -42,5 +43,17 @@
 	    />
 
     </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="@string/preference_setting_xxx_info">
+	    <Preference
+	        android:key="preference_setting_sdcard_last_backup_time"
+	        android:title="@string/preference_setting_xxx_last_backup_time_title"
+	    />
+	    <Preference
+	        android:key="preference_setting_sdcard_available_space"
+	        android:title="@string/preference_setting_xxx_available_space_title"
+	    />
+	</PreferenceCategory>
     
 </PreferenceScreen>

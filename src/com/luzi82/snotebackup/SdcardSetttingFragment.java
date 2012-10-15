@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.os.StatFs;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
@@ -25,27 +26,9 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		LinkedList<String> entryList;
 		LinkedList<String> entryValueList;
 		ListPreference lp;
+		boolean b;
 
-		entryList = new LinkedList<String>();
-		entryValueList = new LinkedList<String>();
-		for (int hr = 0; hr < 24; ++hr) {
-			for (int j = 0; j < 2; ++j) {
-				int mn = j * 30;
-				long t = 0; // hour
-				t += hr;
-				t *= 60; // min
-				t += mn;
-				t *= 60; // sec
-				t *= 1000; // msec
-				t = Pref.unOffset(t);
-
-				entryList.add(String.format("%02d:%02d", hr, mn));
-				entryValueList.add(Long.toString(t));
-			}
-		}
-		ListPreference time_p = (ListPreference) findPreference("preference_setting_sdcard_next_backup_time");
-		time_p.setEntries(entryList.toArray(new String[0]));
-		time_p.setEntryValues(entryValueList.toArray(new String[0]));
+		StatFs statfs = SNoteBackup.sdcardStatFs();
 
 		entryList = new LinkedList<String>();
 		entryValueList = new LinkedList<String>();
@@ -96,6 +79,16 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 				return true;
 			}
 		});
+
+		p = findPreference("preference_setting_sdcard_available_space");
+		b = (statfs != null) && (statfs.getAvailableBlocks() != 0);
+		p.setShouldDisableView(!b);
+		if (b) {
+			long sizeL = 1;
+			sizeL *= statfs.getAvailableBlocks();
+			sizeL *= statfs.getBlockSize();
+			p.setSummary(SNoteBackup.toByteSize(sizeL));
+		}
 
 	}
 
