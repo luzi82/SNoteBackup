@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         
-        <service android:name="SdcardBackupService" />
+        <service android:name=".MainService" />
         
     </application>
 

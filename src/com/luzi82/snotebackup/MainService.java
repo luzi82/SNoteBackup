@@ -12,7 +12,7 @@ import android.os.IBinder;
 import com.luzi82.async.AbstractAsyncTask.Callback;
 import com.luzi82.asyncfile.Copy;
 
-public class SdcardBackupService extends Service {
+public class MainService extends Service {
 
 	Executor mExecutor = Executors.newCachedThreadPool();
 	boolean busy = false;
@@ -58,7 +58,7 @@ public class SdcardBackupService extends Service {
 		copy.setCallback(new Callback<Boolean>() {
 			@Override
 			public void atFinish(Boolean aResult) {
-				synchronized (SdcardBackupService.this) {
+				synchronized (MainService.this) {
 					T_T.v("copy atFinish " + aResult);
 					done();
 				}

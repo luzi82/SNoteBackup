@@ -59,7 +59,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
-				Intent i = new Intent(getActivity(), SdcardBackupService.class);
+				Intent i = new Intent(getActivity(), MainService.class);
 				getActivity().startService(i);
 				return true;
 			}
