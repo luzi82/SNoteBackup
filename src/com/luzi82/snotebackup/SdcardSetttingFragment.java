@@ -43,7 +43,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 				entryValueList.add(Long.toString(t));
 			}
 		}
-		ListPreference time_p = (ListPreference) findPreference("preference_setting_sdcard_period_time");
+		ListPreference time_p = (ListPreference) findPreference("preference_setting_sdcard_next_backup_time");
 		time_p.setEntries(entryList.toArray(new String[0]));
 		time_p.setEntryValues(entryValueList.toArray(new String[0]));
 
@@ -53,7 +53,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 			entryList.add(getString(pp.res));
 			entryValueList.add(pp.name());
 		}
-		lp = (ListPreference) findPreference("preference_setting_sdcard_period");
+		lp = (ListPreference) findPreference("preference_setting_sdcard_schedule_backup_period");
 		lp.setEntries(entryList.toArray(new String[0]));
 		lp.setEntryValues(entryValueList.toArray(new String[0]));
 
@@ -132,15 +132,15 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		long l;
 		int hr, mn;
 
-		p = findPreference("preference_setting_sdcard_period");
-		p.setSummary(pref.preference_setting_sdcard_period.res);
+		p = findPreference("preference_setting_sdcard_schedule_backup_period");
+		p.setSummary(pref.preference_setting_sdcard_schedule_backup_period.res);
 
-		p = findPreference("preference_setting_sdcard_period_time");
+		p = findPreference("preference_setting_sdcard_next_backup_time");
 		b = true;
 		b = b && pref.preference_setting_sdcard_enable;
-		b = b && (pref.preference_setting_sdcard_period == Pref.Period.DAY);
+		b = b && (pref.preference_setting_sdcard_schedule_backup_period == Pref.Period.DAY);
 		p.setEnabled(b);
-		l = pref.preference_setting_sdcard_period_time;
+		l = pref.preference_setting_sdcard_next_backup_time;
 		l = Pref.offset(l); // msec
 		l /= 1000; // sec
 		l /= 60; // min

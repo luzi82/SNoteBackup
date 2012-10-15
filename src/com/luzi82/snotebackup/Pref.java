@@ -27,8 +27,8 @@ public class Pref {
 	}
 
 	boolean preference_setting_sdcard_enable;
-	Period preference_setting_sdcard_period;
-	long preference_setting_sdcard_period_time;
+	Period preference_setting_sdcard_schedule_backup_period;
+	long preference_setting_sdcard_next_backup_time;
 	int preference_setting_sdcard_range;
 	int preference_setting_sdcard_min_copy;
 
@@ -43,18 +43,18 @@ public class Pref {
 			ret.preference_setting_sdcard_enable = preference_setting_sdcard_enable_default;
 		}
 
-		String preference_setting_sdcard_period_default = aContext.getString(R.string.preference_setting_sdcard_period_default);
+		String preference_setting_sdcard_schedule_backup_period_default = aContext.getString(R.string.preference_setting_sdcard_schedule_backup_period_default);
 		try {
-			ret.preference_setting_sdcard_period = Enum.valueOf(Period.class, sp.getString("preference_setting_sdcard_period", preference_setting_sdcard_period_default));
+			ret.preference_setting_sdcard_schedule_backup_period = Enum.valueOf(Period.class, sp.getString("preference_setting_sdcard_schedule_backup_period", preference_setting_sdcard_schedule_backup_period_default));
 		} catch (Exception e) {
-			ret.preference_setting_sdcard_period = Enum.valueOf(Period.class, preference_setting_sdcard_period_default);
+			ret.preference_setting_sdcard_schedule_backup_period = Enum.valueOf(Period.class, preference_setting_sdcard_schedule_backup_period_default);
 		}
 
-		String preference_setting_sdcard_period_time_default = Long.toString(preference_setting_sdcard_period_time_default(aContext));
+		String preference_setting_sdcard_next_backup_time_default = Long.toString(preference_setting_sdcard_next_backup_time_default(aContext));
 		try {
-			ret.preference_setting_sdcard_period_time = Long.parseLong(sp.getString("preference_setting_sdcard_period_time", preference_setting_sdcard_period_time_default));
+			ret.preference_setting_sdcard_next_backup_time = Long.parseLong(sp.getString("preference_setting_sdcard_next_backup_time", preference_setting_sdcard_next_backup_time_default));
 		} catch (Exception e) {
-			ret.preference_setting_sdcard_period_time = Long.parseLong(preference_setting_sdcard_period_time_default);
+			ret.preference_setting_sdcard_next_backup_time = Long.parseLong(preference_setting_sdcard_next_backup_time_default);
 		}
 
 		String preference_setting_sdcard_range_default = aContext.getString(R.string.preference_setting_sdcard_range_default);
@@ -74,10 +74,10 @@ public class Pref {
 		return ret;
 	}
 
-	static long preference_setting_sdcard_period_time_default(Context aContext) {
+	static long preference_setting_sdcard_next_backup_time_default(Context aContext) {
 		Pattern p = Pattern.compile("(\\d{2})\\:(\\d{2})");
 
-		String def = aContext.getString(R.string.preference_setting_sdcard_period_time_default);
+		String def = aContext.getString(R.string.preference_setting_sdcard_next_backup_time_default);
 		T_T.v(def);
 		Matcher m = p.matcher(def);
 		m.matches();
