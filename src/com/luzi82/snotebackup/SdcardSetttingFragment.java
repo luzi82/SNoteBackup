@@ -16,6 +16,7 @@ import android.preference.PreferenceFragment;
 import android.widget.Toast;
 
 import com.luzi82.async.AbstractAsyncTask.Callback;
+import com.luzi82.asyncfile.AsyncStatfs;
 import com.luzi82.asyncfile.DirFileCount;
 
 public class SdcardSetttingFragment extends PreferenceFragment {
@@ -34,7 +35,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		ListPreference lp;
 		boolean b;
 
-		StatFs statfs = SNoteBackup.sdcardStatFs();
+		// StatFs statfs = SNoteBackup.sdcardStatFs();
 
 		entryList = new LinkedList<String>();
 		entryValueList = new LinkedList<String>();
@@ -86,17 +87,6 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 			}
 		});
 
-		p = findPreference("preference_setting_sdcard_available_space");
-		b = (statfs != null) && (statfs.getAvailableBlocks() != 0);
-		p.setShouldDisableView(!b);
-		if (b) {
-			long sizeL = 1;
-			sizeL *= statfs.getAvailableBlocks();
-			sizeL *= statfs.getBlockSize();
-			p.setSummary(SNoteBackup.toByteSize(sizeL));
-		}
-
-		// p = findPreference("preference_setting_sdcard_backup_count");
 		DirFileCount dfc = new DirFileCount(executor, SNoteBackup.sdcardAppDir(getActivity()));
 		dfc.setCallback(new Callback<Integer>() {
 			@Override
@@ -108,6 +98,29 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 			}
 		});
 		dfc.start();
+
+		AsyncStatfs as = new AsyncStatfs(executor, SNoteBackup.sdcardDir());
+		as.setCallback(new Callback<StatFs>() {
+			@Override
+			public void atFinish(StatFs aResult) {
+				Preference p = findPreference("preference_setting_sdcard_available_space");
+				boolean b = (aResult != null) && (aResult.getAvailableBlocks() != 0);
+				p.setShouldDisableView(!b);
+				if (b) {
+					long sizeL = 1;
+					sizeL *= aResult.getAvailableBlocks();
+					sizeL *= aResult.getBlockSize();
+					p.setSummary(SNoteBackup.toByteSize(sizeL));
+				}
+
+				p = findPreference("preference_setting_sdcard_backup_count");
+				p.setShouldDisableView(!b);
+
+				p = findPreference("preference_setting_sdcard_backup_size");
+				p.setShouldDisableView(!b);
+			}
+		});
+		as.start();
 
 	}
 
