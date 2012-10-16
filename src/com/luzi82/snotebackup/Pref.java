@@ -26,9 +26,10 @@ public class Pref {
 		}
 	}
 
-	boolean preference_setting_sdcard_enable;
+	boolean preference_setting_sdcard_backup_enable;
 	Period preference_setting_sdcard_schedule_backup_period;
 	long preference_setting_sdcard_next_backup_time;
+	boolean preference_setting_sdcard_cleanup_enable;
 	int preference_setting_sdcard_range;
 	int preference_setting_sdcard_min_copy;
 
@@ -36,11 +37,11 @@ public class Pref {
 		SharedPreferences sp = aContext.getSharedPreferences(PREF_KEY, Context.MODE_MULTI_PROCESS);
 		Pref ret = new Pref();
 
-		boolean preference_setting_sdcard_enable_default = Boolean.parseBoolean(aContext.getString(R.string.preference_setting_sdcard_enable_default));
+		boolean preference_setting_sdcard_backup_enable_default = Boolean.parseBoolean(aContext.getString(R.string.preference_setting_sdcard_backup_enable_default));
 		try {
-			ret.preference_setting_sdcard_enable = sp.getBoolean("preference_setting_sdcard_enable", preference_setting_sdcard_enable_default);
+			ret.preference_setting_sdcard_backup_enable = sp.getBoolean("preference_setting_sdcard_backup_enable", preference_setting_sdcard_backup_enable_default);
 		} catch (Exception e) {
-			ret.preference_setting_sdcard_enable = preference_setting_sdcard_enable_default;
+			ret.preference_setting_sdcard_backup_enable = preference_setting_sdcard_backup_enable_default;
 		}
 
 		String preference_setting_sdcard_schedule_backup_period_default = aContext.getString(R.string.preference_setting_sdcard_schedule_backup_period_default);
@@ -55,6 +56,13 @@ public class Pref {
 			ret.preference_setting_sdcard_next_backup_time = Long.parseLong(sp.getString("preference_setting_sdcard_next_backup_time", preference_setting_sdcard_next_backup_time_default));
 		} catch (Exception e) {
 			ret.preference_setting_sdcard_next_backup_time = Long.parseLong(preference_setting_sdcard_next_backup_time_default);
+		}
+		
+		boolean preference_setting_sdcard_cleanup_enable_default = Boolean.parseBoolean(aContext.getString(R.string.preference_setting_sdcard_cleanup_enable_default));
+		try {
+			ret.preference_setting_sdcard_cleanup_enable = sp.getBoolean("preference_setting_sdcard_cleanup_enable", preference_setting_sdcard_cleanup_enable_default);
+		} catch (Exception e) {
+			ret.preference_setting_sdcard_cleanup_enable = preference_setting_sdcard_cleanup_enable_default;
 		}
 
 		String preference_setting_sdcard_range_default = aContext.getString(R.string.preference_setting_sdcard_range_default);

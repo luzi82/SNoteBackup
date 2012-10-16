@@ -15,20 +15,20 @@
         android:title="@string/preference_setting_xxx_schedule_backup_title">
 
 	    <CheckBoxPreference
-	        android:key="preference_setting_sdcard_enable"
-	        android:title="@string/preference_setting_sdcard_enable_title"
-	        android:defaultValue="@string/preference_setting_sdcard_enable_default"
+	        android:key="preference_setting_sdcard_backup_enable"
+	        android:title="@string/preference_setting_xxx_schedule_backup_title"
+	        android:defaultValue="@string/preference_setting_sdcard_backup_enable_default"
 	    />
 	    <ListPreference
 	        android:key="preference_setting_sdcard_schedule_backup_period"
 	        android:title="@string/preference_setting_xxx_schedule_backup_period_title"
-	        android:dependency="preference_setting_sdcard_enable"
+	        android:dependency="preference_setting_sdcard_backup_enable"
 	        android:defaultValue="@string/preference_setting_sdcard_schedule_backup_period_default"
 	    />
 	    <Preference
 	        android:key="preference_setting_sdcard_next_backup_time"
 	        android:title="@string/preference_setting_xxx_next_backup_time_title"
-	        android:dependency="preference_setting_sdcard_enable"
+	        android:dependency="preference_setting_sdcard_backup_enable"
 	    />
 	    
     </PreferenceCategory>
@@ -36,13 +36,18 @@
     <PreferenceCategory
         android:title="@string/preference_setting_xxx_cleanup_title">
 	    	    
-	    <EditTextPreference
+	    <CheckBoxPreference
+	        android:key="preference_setting_sdcard_cleanup_enable"
+	        android:title="@string/preference_setting_xxx_cleanup_enable_title"
+	        android:defaultValue="@string/preference_setting_sdcard_cleanup_enable_default"
+	        android:dependency="preference_setting_sdcard_backup_enable"
+	    />
+        <EditTextPreference
 	        android:key="preference_setting_sdcard_range"
 	        android:title="@string/preference_setting_xxx_range_title"
 	        android:inputType="number"
 	        android:maxLength="5"
 	        android:defaultValue="@string/preference_setting_sdcard_range_default"
-	        android:dependency="preference_setting_sdcard_enable"
 	    />
 	    <EditTextPreference
 	        android:key="preference_setting_sdcard_min_copy"
@@ -50,7 +55,6 @@
 	        android:inputType="number"
 	        android:maxLength="5"
 	        android:defaultValue="@string/preference_setting_sdcard_min_copy_default"
-	        android:dependency="preference_setting_sdcard_enable"
 	    />
 
     </PreferenceCategory>

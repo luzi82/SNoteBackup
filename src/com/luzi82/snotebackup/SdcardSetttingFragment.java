@@ -130,7 +130,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 
 		p = findPreference("preference_setting_sdcard_next_backup_time");
 		b = true;
-		b = b && pref.preference_setting_sdcard_enable;
+		b = b && pref.preference_setting_sdcard_backup_enable;
 		b = b && (pref.preference_setting_sdcard_schedule_backup_period == Pref.Period.DAY);
 		p.setEnabled(b);
 		l = pref.preference_setting_sdcard_next_backup_time;
@@ -147,6 +147,14 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 
 		p = findPreference("preference_setting_sdcard_min_copy");
 		p.setSummary(Integer.toString(pref.preference_setting_sdcard_min_copy));
+		
+		b = true;
+		b = b && pref.preference_setting_sdcard_backup_enable;
+		b = b && pref.preference_setting_sdcard_cleanup_enable;
+		p = findPreference("preference_setting_sdcard_range");
+		p.setEnabled(b);
+		p = findPreference("preference_setting_sdcard_min_copy");
+		p.setEnabled(b);
 	}
 
 }
