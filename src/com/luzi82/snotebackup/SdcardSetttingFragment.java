@@ -1,5 +1,6 @@
 package com.luzi82.snotebackup;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.concurrent.Executor;
 
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.luzi82.async.AbstractAsyncTask.Callback;
 import com.luzi82.asyncfile.AsyncStatfs;
 import com.luzi82.asyncfile.DirFileCount;
+import com.luzi82.asyncfile.FileStat;
+import com.luzi82.asyncfile.FileStat.Result;
 
 public class SdcardSetttingFragment extends PreferenceFragment {
 
@@ -33,7 +36,6 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		LinkedList<String> entryList;
 		LinkedList<String> entryValueList;
 		ListPreference lp;
-		boolean b;
 
 		// StatFs statfs = SNoteBackup.sdcardStatFs();
 
@@ -122,6 +124,29 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		});
 		as.start();
 
+		FileStat fs = new FileStat(executor, SNoteBackup.sdcardAppDir(getActivity()));
+		fs.setCallback(new Callback<FileStat.Result>() {
+			@Override
+			public void atFinish(Result aResult) {
+				if (aResult == null)
+					return;
+				Preference p = findPreference("preference_setting_sdcard_backup_size");
+				p.setSummary(SNoteBackup.toByteSize(aResult.mSize));
+			}
+		});
+		fs.start();
+
+		fs = new FileStat(executor, new File(SNoteBackup.SNOTE_PATH));
+		fs.setCallback(new Callback<FileStat.Result>() {
+			@Override
+			public void atFinish(Result aResult) {
+				if (aResult == null)
+					return;
+				Preference p = findPreference("preference_setting_sdcard_snote_size");
+				p.setSummary(SNoteBackup.toByteSize(aResult.mSize));
+			}
+		});
+		fs.start();
 	}
 
 	@Override
