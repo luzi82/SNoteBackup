@@ -64,6 +64,7 @@
 	    <Preference
 	        android:key="preference_setting_sdcard_backup_count"
 	        android:title="@string/preference_setting_xxx_backup_count_title"
+	        android:summary="@string/preference_setting_xxx_size_calc_title"
 	    />
 	    <Preference
 	        android:key="preference_setting_sdcard_last_backup_time"
@@ -72,14 +73,17 @@
 	    <Preference
 	        android:key="preference_setting_sdcard_snote_size"
 	        android:title="@string/preference_setting_xxx_snote_size_title"
+	        android:summary="@string/preference_setting_xxx_size_calc_title"
 	    />
 	    <Preference
 	        android:key="preference_setting_sdcard_available_space"
 	        android:title="@string/preference_setting_xxx_available_space_title"
+	        android:summary="@string/preference_setting_xxx_size_calc_title"
 	    />
    	    <Preference
 	        android:key="preference_setting_sdcard_backup_size"
 	        android:title="@string/preference_setting_xxx_backup_size_title"
+	        android:summary="@string/preference_setting_xxx_size_calc_title"
 	    />
    	</PreferenceCategory>
     
