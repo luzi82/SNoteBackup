@@ -70,12 +70,12 @@
 	        android:title="@string/preference_setting_xxx_last_backup_time_title"
 	    />
 	    <Preference
-	        android:key="preference_setting_sdcard_available_space"
-	        android:title="@string/preference_setting_xxx_available_space_title"
-	    />
-	    <Preference
 	        android:key="preference_setting_sdcard_snote_size"
 	        android:title="@string/preference_setting_xxx_snote_size_title"
+	    />
+	    <Preference
+	        android:key="preference_setting_sdcard_available_space"
+	        android:title="@string/preference_setting_xxx_available_space_title"
 	    />
    	    <Preference
 	        android:key="preference_setting_sdcard_backup_size"
