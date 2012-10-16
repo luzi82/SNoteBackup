@@ -1,6 +1,7 @@
 package com.luzi82.snotebackup;
 
 import java.util.LinkedList;
+import java.util.concurrent.Executor;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,9 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceFragment;
 import android.widget.Toast;
 
+import com.luzi82.async.AbstractAsyncTask.Callback;
+import com.luzi82.asyncfile.DirFileCount;
+
 public class SdcardSetttingFragment extends PreferenceFragment {
 
 	@Override
@@ -21,6 +25,8 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		super.onCreate(savedInstanceState);
 		getPreferenceManager().setSharedPreferencesName(Pref.PREF_KEY);
 		addPreferencesFromResource(R.xml.setting_sdcard);
+
+		Executor executor = ((MainActivity) getActivity()).getExecutor();
 
 		Preference p;
 		LinkedList<String> entryList;
@@ -90,6 +96,19 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 			p.setSummary(SNoteBackup.toByteSize(sizeL));
 		}
 
+		// p = findPreference("preference_setting_sdcard_backup_count");
+		DirFileCount dfc = new DirFileCount(executor, SNoteBackup.sdcardAppDir(getActivity()));
+		dfc.setCallback(new Callback<Integer>() {
+			@Override
+			public void atFinish(Integer aResult) {
+				if (aResult < 0)
+					aResult = 0;
+				Preference p = findPreference("preference_setting_sdcard_backup_count");
+				p.setSummary(aResult.toString());
+			}
+		});
+		dfc.start();
+
 	}
 
 	@Override
@@ -147,7 +166,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 
 		p = findPreference("preference_setting_sdcard_min_copy");
 		p.setSummary(Integer.toString(pref.preference_setting_sdcard_min_copy));
-		
+
 		b = true;
 		b = b && pref.preference_setting_sdcard_backup_enable;
 		b = b && pref.preference_setting_sdcard_cleanup_enable;
