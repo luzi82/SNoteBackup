@@ -61,7 +61,7 @@ public class MainService extends Service {
 				@Override
 				public void receiveMsg(State aMsg) {
 					T_T.vf();
-					if (aMsg == BackupSDCard.State.CHECK) {
+					if (aMsg == BackupSDCard.State.INIT) {
 						T_T.v("show notification");
 						Notification.Builder nb = new Notification.Builder(MainService.this);
 						nb = nb.setContentTitle(getString(R.string.app_name));

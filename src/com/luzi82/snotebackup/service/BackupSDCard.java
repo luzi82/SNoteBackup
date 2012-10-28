@@ -16,7 +16,7 @@ public class BackupSDCard extends AbstractAsyncTask<BackupSDCard.State> {
 		INIT,CHECK,BACKUP,SUCCESS,FAIL
 	}
 	
-	private State mState=State.INIT;
+	private State mState=null;
 	final private Context mContext;
 
 	public BackupSDCard(Executor aExecutor,Context aContext) {
@@ -27,7 +27,11 @@ public class BackupSDCard extends AbstractAsyncTask<BackupSDCard.State> {
 	@Override
 	protected boolean tick() {
 		T_T.vf();
-		if(mState==State.INIT){
+		if(mState==null){
+			mState = State.INIT;
+			sendMsg(mState, true);
+			return false;
+		}else if(mState==State.INIT){
 			mState = State.CHECK;
 			sendMsg(mState, true);
 			return false;
