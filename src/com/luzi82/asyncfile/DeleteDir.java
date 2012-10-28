@@ -26,25 +26,25 @@ public class DeleteDir extends AbstractAsyncTask<Boolean> {
 		good = good && mTarget.exists();
 		good = good && mTarget.isDirectory();
 		if (!good) {
-			done(false);
+			sendMsg(false);
 			return false;
 		}
 
 		File[] fileList = mTarget.listFiles();
 		mTotal = fileList.length;
 		if (mTotal == 0) {
-			done(true);
+			sendMsg(true);
 			return false;
 		}
 
 		Callback<Boolean> cb = new Callback<Boolean>() {
 			@Override
-			public void atFinish(Boolean aResult) {
+			public void receiveMsg(Boolean aResult) {
 				synchronized (DeleteDir.this) {
 					mGood = mGood && aResult;
 					++mDone;
 					if (mDone == mTotal) {
-						done(mGood);
+						sendMsg(mGood);
 					}
 				}
 			}

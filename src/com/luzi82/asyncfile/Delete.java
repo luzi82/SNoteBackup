@@ -19,24 +19,24 @@ public class Delete extends AbstractAsyncTask<Boolean> {
 	protected boolean tick() {
 		T_T.v(mTarget.getAbsolutePath());
 		if (!mTarget.exists()) {
-			done(true);
+			sendMsg(true);
 			return false;
 		}
 		if (mTarget.isDirectory()) {
 			DeleteDir d = new DeleteDir(mExecutor, mTarget);
 			d.setCallback(new Callback<Boolean>() {
 				@Override
-				public void atFinish(Boolean aResult) {
+				public void receiveMsg(Boolean aResult) {
 					boolean good = aResult;
 					boolean t = mTarget.delete();
-					done(good && t);
+					sendMsg(good && t);
 				}
 			});
 			d.start();
 			return false;
 		} else if (mTarget.isFile()) {
 			boolean good = mTarget.delete();
-			done(good);
+			sendMsg(good);
 			return false;
 		}
 		throw new IllegalStateException();

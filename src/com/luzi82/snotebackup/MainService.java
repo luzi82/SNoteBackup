@@ -1,6 +1,5 @@
 package com.luzi82.snotebackup;
 
-import java.io.File;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -9,13 +8,16 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.luzi82.async.AbstractAsyncTask.Callback;
-import com.luzi82.asyncfile.Copy;
+import com.luzi82.async.AbstractAsyncTask;
+import com.luzi82.async.AsyncTaskQueue;
+import com.luzi82.snotebackup.service.BackupSDCard;
+import com.luzi82.snotebackup.service.BackupSDCard.State;
 
 public class MainService extends Service {
 
 	Executor mExecutor = Executors.newCachedThreadPool();
-	boolean busy = false;
+
+	AsyncTaskQueue mTaskQueue = new AsyncTaskQueue(mExecutor);
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -23,48 +25,9 @@ public class MainService extends Service {
 	}
 
 	@Override
-	public synchronized int onStartCommand(Intent intent, int flags, int startId) {
-		if (busy)
-			return START_STICKY;
+	public int onStartCommand(Intent intent, int flags, int startId) {
 
-		busy = true;
-
-		if (!SNoteBackup.sdcardExist()) {
-			mExecutor.execute(mDoneRunnable);
-			return START_STICKY;
-		}
-
-		// show notification
-		T_T.v("show notification");
-		Notification.Builder nb = new Notification.Builder(this);
-		// nb = nb.setTicker("ticker");
-		nb = nb.setContentTitle(getString(R.string.app_name));
-		nb = nb.setContentText(getString(R.string.notification_sdcard));
-		nb = nb.setOngoing(true);
-		nb = nb.setSmallIcon(R.drawable.ic_launcher);
-		// nb = nb.setLargeIcon(Bitmap.createBitmap(32, 32,
-		// Bitmap.Config.ARGB_8888));
-		Notification notification = nb.getNotification();
-		startForeground(R.string.app_name, notification);
-
-		// fire backup
-		long time = System.currentTimeMillis();
-		File sdcardDir = SNoteBackup.sdcardAppDir(this);
-		sdcardDir.mkdirs();
-
-		File from = new File(SNoteBackup.SNOTE_PATH);
-		File to = new File(sdcardDir, Long.toString(time));
-		Copy copy = new Copy(mExecutor, from, to);
-		copy.setCallback(new Callback<Boolean>() {
-			@Override
-			public void atFinish(Boolean aResult) {
-				synchronized (MainService.this) {
-					T_T.v("copy atFinish " + aResult);
-					done();
-				}
-			}
-		});
-		copy.start();
+		mTaskQueue.push(new BackupSdCardTask(startId));
 
 		return START_STICKY;
 	}
@@ -75,17 +38,51 @@ public class MainService extends Service {
 		super.onDestroy();
 	}
 
-	final private Runnable mDoneRunnable = new Runnable() {
-		@Override
-		public void run() {
-			done();
-		}
-	};
+	// private synchronized void done() {
+	// stopForeground(true);
+	// stopSelf();
+	// }
 
-	private synchronized void done() {
-		stopForeground(true);
-		stopSelf();
-		busy = false;
+	private class BackupSdCardTask extends AbstractAsyncTask<Void> {
+
+		final int mStartId;
+		private BackupSDCard mAsync;
+
+		protected BackupSdCardTask(int aStartId) {
+			super(MainService.this.mExecutor);
+			mStartId = aStartId;
+		}
+
+		@Override
+		protected boolean tick() {
+			T_T.vf();
+			mAsync = new BackupSDCard(mExecutor, MainService.this);
+			mAsync.setCallback(new Callback<BackupSDCard.State>() {
+				@Override
+				public void receiveMsg(State aMsg) {
+					T_T.vf();
+					if (aMsg == BackupSDCard.State.CHECK) {
+						T_T.v("show notification");
+						Notification.Builder nb = new Notification.Builder(MainService.this);
+						nb = nb.setContentTitle(getString(R.string.app_name));
+						nb = nb.setContentText(getString(R.string.notification_sdcard));
+						nb = nb.setOngoing(true);
+						nb = nb.setSmallIcon(R.drawable.ic_launcher);
+						Notification notification = nb.getNotification();
+						startForeground(mStartId, notification);
+					} else if (aMsg == BackupSDCard.State.SUCCESS) {
+						stopForeground(true);
+						sendMsg(null);
+					} else if (aMsg == BackupSDCard.State.FAIL) {
+						stopForeground(true);
+						sendMsg(null);
+					}
+				}
+			});
+			mAsync.start();
+			return false;
+		}
+
 	}
 
 }

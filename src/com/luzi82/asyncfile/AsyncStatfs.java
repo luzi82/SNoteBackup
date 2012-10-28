@@ -21,13 +21,13 @@ public class AsyncStatfs extends AbstractAsyncTask<StatFs> {
 		boolean good = true;
 		good = good && mTarget.exists();
 		if (!good) {
-			done(null);
+			sendMsg(null);
 			return false;
 		}
 		try {
-			done(new StatFs(mTarget.getAbsolutePath()));
+			sendMsg(new StatFs(mTarget.getAbsolutePath()));
 		} catch (Exception e) {
-			done(null);
+			sendMsg(null);
 		}
 		return false;
 	}

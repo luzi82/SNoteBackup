@@ -92,7 +92,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		DirFileCount dfc = new DirFileCount(executor, SNoteBackup.sdcardAppDir(getActivity()));
 		dfc.setCallback(new Callback<Integer>() {
 			@Override
-			public void atFinish(Integer aResult) {
+			public void receiveMsg(Integer aResult) {
 				if (aResult < 0)
 					aResult = 0;
 				Preference p = findPreference("preference_setting_sdcard_backup_count");
@@ -104,7 +104,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		AsyncStatfs as = new AsyncStatfs(executor, SNoteBackup.sdcardDir());
 		as.setCallback(new Callback<StatFs>() {
 			@Override
-			public void atFinish(StatFs aResult) {
+			public void receiveMsg(StatFs aResult) {
 				Preference p = findPreference("preference_setting_sdcard_available_space");
 				boolean b = (aResult != null) && (aResult.getAvailableBlocks() != 0);
 				p.setShouldDisableView(!b);
@@ -127,7 +127,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		FileStat fs = new FileStat(executor, SNoteBackup.sdcardAppDir(getActivity()));
 		fs.setCallback(new Callback<FileStat.Result>() {
 			@Override
-			public void atFinish(Result aResult) {
+			public void receiveMsg(Result aResult) {
 				if (aResult == null)
 					return;
 				Preference p = findPreference("preference_setting_sdcard_backup_size");
@@ -139,7 +139,7 @@ public class SdcardSetttingFragment extends PreferenceFragment {
 		fs = new FileStat(executor, new File(SNoteBackup.SNOTE_PATH));
 		fs.setCallback(new Callback<FileStat.Result>() {
 			@Override
-			public void atFinish(Result aResult) {
+			public void receiveMsg(Result aResult) {
 				if (aResult == null)
 					return;
 				Preference p = findPreference("preference_setting_sdcard_snote_size");

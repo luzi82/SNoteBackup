@@ -41,7 +41,7 @@ public class CopyFile extends AbstractAsyncTask<Boolean> {
 				good = good && mFrom.isFile();
 				good = good && (!mTo.exists());
 				if (!good) {
-					done(false);
+					sendMsg(false);
 					return false;
 				}
 
@@ -73,7 +73,7 @@ public class CopyFile extends AbstractAsyncTask<Boolean> {
 				os.flush();
 				os.close();
 				os = null;
-				done(true);
+				sendMsg(true);
 				return false;
 			}
 		} catch (Exception e) {
@@ -93,7 +93,7 @@ public class CopyFile extends AbstractAsyncTask<Boolean> {
 				e.printStackTrace();
 			}
 		}
-		done(false);
+		sendMsg(false);
 		return false;
 	}
 

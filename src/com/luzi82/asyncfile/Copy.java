@@ -22,7 +22,7 @@ public class Copy extends AbstractAsyncTask<Boolean> {
 		good = good && mFrom.exists();
 		good = good && (!mTo.exists());
 		if (!good) {
-			done(false);
+			sendMsg(false);
 			return false;
 		}
 		if (mFrom.isDirectory()) {
@@ -30,8 +30,8 @@ public class Copy extends AbstractAsyncTask<Boolean> {
 			CopyDir c = new CopyDir(mExecutor, mFrom, mTo);
 			c.setCallback(new Callback<Boolean>() {
 				@Override
-				public void atFinish(Boolean aResult) {
-					done(aResult);
+				public void receiveMsg(Boolean aResult) {
+					sendMsg(aResult);
 				}
 			});
 			c.start();
@@ -40,14 +40,14 @@ public class Copy extends AbstractAsyncTask<Boolean> {
 			CopyFile c = new CopyFile(mExecutor, mFrom, mTo);
 			c.setCallback(new Callback<Boolean>() {
 				@Override
-				public void atFinish(Boolean aResult) {
-					done(aResult);
+				public void receiveMsg(Boolean aResult) {
+					sendMsg(aResult);
 				}
 			});
 			c.start();
 			return false;
 		}
-		done(false);
+		sendMsg(false);
 		return false;
 	}
 

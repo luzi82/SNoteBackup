@@ -2,7 +2,7 @@ package com.luzi82.async;
 
 import java.util.concurrent.Executor;
 
-public abstract class AbstractAsyncTask<Result> {
+public abstract class AbstractAsyncTask<Msg> {
 
 	protected final Executor mExecutor;
 
@@ -10,17 +10,17 @@ public abstract class AbstractAsyncTask<Result> {
 		mExecutor = aExecutor;
 	}
 
-	static abstract public class Callback<Result> {
-		public abstract void atFinish(Result aResult);
+	static abstract public class Callback<Msg> {
+		public abstract void receiveMsg(Msg aMsg);
 	}
 
-	Callback<Result> mCallback = new Callback<Result>() {
+	Callback<Msg> mCallback = new Callback<Msg>() {
 		@Override
-		public void atFinish(Result aResult) {
+		public void receiveMsg(Msg aMsg) {
 		}
 	};
 
-	public void setCallback(Callback<Result> aCallback) {
+	public void setCallback(Callback<Msg> aCallback) {
 		mCallback = aCallback;
 	}
 
@@ -30,7 +30,7 @@ public abstract class AbstractAsyncTask<Result> {
 		startTurn();
 	}
 
-	private void startTurn() {
+	protected void startTurn() {
 		mExecutor.execute(mTurnRunnable);
 	}
 
@@ -51,11 +51,18 @@ public abstract class AbstractAsyncTask<Result> {
 
 	// /////////
 
-	protected void done(final Result aResult) {
+	protected void sendMsg(Msg aMsg) {
+		sendMsg(aMsg, false);
+	}
+
+	protected void sendMsg(final Msg aMsg, final boolean aTick) {
 		mExecutor.execute(new Runnable() {
 			@Override
 			public void run() {
-				mCallback.atFinish(aResult);
+				mCallback.receiveMsg(aMsg);
+				if (aTick) {
+					startTurn();
+				}
 			}
 		});
 	}

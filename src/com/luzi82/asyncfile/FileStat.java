@@ -27,27 +27,27 @@ public class FileStat extends AbstractAsyncTask<FileStat.Result> {
 	protected boolean tick() {
 //		T_T.v(mTarget.getAbsolutePath());
 		if (!mTarget.exists()) {
-			done(null);
+			sendMsg(null);
 			return false;
 		}
 		if (mTarget.isDirectory()) {
 			File[] fileList = mTarget.listFiles();
 			mCount = fileList.length;
 			if (mCount == 0) {
-				done(mResult);
+				sendMsg(mResult);
 				return false;
 			}
 			for (File file : fileList) {
 				FileStat fs = new FileStat(mExecutor, file);
 				fs.setCallback(new Callback<FileStat.Result>() {
 					@Override
-					public void atFinish(FileStat.Result aResult) {
+					public void receiveMsg(FileStat.Result aResult) {
 						if (aResult != null) {
 							mResult.mSize += aResult.mSize;
 						}
 						++mDone;
 						if (mDone == mCount) {
-							done(mResult);
+							sendMsg(mResult);
 							return;
 						}
 					}
@@ -57,7 +57,7 @@ public class FileStat extends AbstractAsyncTask<FileStat.Result> {
 			return false;
 		} else if (mTarget.isFile()) {
 			mResult.mSize += mTarget.length();
-			done(mResult);
+			sendMsg(mResult);
 			return false;
 		}
 		throw new IllegalStateException();

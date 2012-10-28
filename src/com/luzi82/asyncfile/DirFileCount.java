@@ -20,10 +20,10 @@ public class DirFileCount extends AbstractAsyncTask<Integer> {
 		good = good && mTarget.exists();
 		good = good && mTarget.isDirectory();
 		if (!good) {
-			done(-1);
+			sendMsg(-1);
 			return false;
 		}
-		done(mTarget.list().length);
+		sendMsg(mTarget.list().length);
 		return false;
 	}
 
